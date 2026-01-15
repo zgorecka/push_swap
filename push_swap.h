@@ -1,20 +1,29 @@
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct s_list
+typedef struct s_node
 {
 	int			content;
-	struct s_list	*next;
-}		t_list;
+	struct s_node	*next;
+    int             index;
+} t_node;
 
-t_list	*ft_lstnew(int content);
-void	ft_lstadd_front(t_list *alst, t_list *new);
+typedef struct s_stack
+{
+    t_node *top;
+    int size;
+} t_stack;
+
+t_node	*ft_lstnew(int content, int index);
+void	ft_lstadd_front(t_node *alst, t_node *new);
 int	ft_isdigit(int c);
 int	ft_atoi(char *str);
-
+void sa(t_stack *stackA);
+void	ft_lstdelone(t_node *lst);
+void push(t_stack *stackA, t_stack *stackB);
 
 #endif

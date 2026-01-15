@@ -9,16 +9,15 @@ int	ft_isdigit(int c)
 
 int	ft_atoi(char *str)
 {
-	int	num;
-	int	isneg;
-	int	i;
+	int num;
+	int isneg;
+	int i;
 
 	num = 0;
 	isneg = 1;
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'
-			|| str[i] == '\n' || str[i] == '\r'
-			|| str[i] == '\v' || str[i] == '\f'))
+	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+			|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f'))
 		i++;
 	if (str[i] == '+')
 		i++;
