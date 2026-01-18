@@ -23,6 +23,7 @@ int	main(int argc, char *argv[])
 {
 	int i;
 	t_node *temp;
+    t_node *temp2;
 	t_stack *stackA;
 	t_stack *stackB;
 
@@ -39,25 +40,37 @@ int	main(int argc, char *argv[])
 		printf("index: %d\n", temp->index);
 		temp = temp->next;
 	}
-	printf("--------\n");
-	push(stackA, stackB);
+	printf("stackA--------\n");
+	rotate(stackA);
 	i = 0;
-	temp = stackA->top;
-	while (++i < argc)
+	temp = (stackA)->top;
+	while (i < 3)
 	{
 		printf("content A: %d\n", temp->content);
 		printf("index A: %d\n", temp->index);
 		temp = temp->next;
+        i++;
 	}
+    /*
 	i = 0;
-	temp = stackA->top;
-	while (++i < argc)
+	temp = stackB->top;
+    printf("stackB--------\n");
+	while (i < 2)
 	{
-		printf("content A: %d\n", temp->content);
-		printf("index A: %d\n", temp->index);
+		printf("content B: %d\n", temp->content);
+		printf("index B: %d\n", temp->index);
 		temp = temp->next;
+        i++;
 	}
+        */
+    temp = stackA->top;
+    while(temp != NULL)
+    {
+        temp2 = temp2->next;
+        free(temp);
+        temp = temp2;
+    }
 	free(stackA);
-
+    free(stackB);
 	return (0);
 }

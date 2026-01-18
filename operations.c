@@ -1,5 +1,5 @@
 #include "push_swap.h"
-
+#include <stdio.h>
 void swap(t_stack *stack)
 {
     t_node *first;
@@ -22,14 +22,30 @@ void push(t_stack *stackA, t_stack *stackB)
 {
     t_node *temp;
 
-    if (stackB != NULL)
+    if (stackB->top != NULL)
     {
         temp = stackA->top;
-        ft_lstadd_front(stackB->top, temp);
+        stackA->top = stackA->top->next;
+        temp->next = stackB->top;
+        stackB->top = temp;
     }
     else
+    {
         stackB->top = stackA->top;
-    temp = stackA->top->next;
-    ft_lstdelone(stackA->top);
-    stackA->top = temp;
+        stackA->top = stackA->top->next;
+        stackB->top->next = NULL;
+    }
+}
+
+void rotate(t_stack *stack)
+{
+    t_node *first;
+    t_node *last;
+
+    first = stack->top;
+    stack->top = first->next;
+    first->next = NULL;
+
+    last = ft_lstlast(stack->top);
+    last->next = first;
 }

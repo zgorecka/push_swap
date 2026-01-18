@@ -32,3 +32,25 @@ void	ft_lstdelone(t_node *lst)
 		return ;
 	free(lst);
 }
+
+void	ft_lstadd_back(t_node *lst, t_node *new)
+{
+	t_node	*last;
+
+	last = ft_lstlast(lst);
+	if (last)
+		last->next = new;
+	else
+		lst = new;
+}
+
+t_node	*ft_lstlast(t_node *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while ((*lst).next != NULL)
+	{
+		lst = (*lst).next;
+	}
+	return (lst);
+}
