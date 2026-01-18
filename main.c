@@ -18,6 +18,10 @@ t_node	*make_stack(t_stack *stackA, int argc, char *argv[])
 	stackA->top = prev;
 	return (prev);
 }
+int input_checker(int argc, char *argv[])
+{
+    
+}
 
 int	main(int argc, char *argv[])
 {
