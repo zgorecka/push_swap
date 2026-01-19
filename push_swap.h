@@ -28,6 +28,9 @@ void push(t_stack *stackA, t_stack *stackB);
 void	ft_lstadd_back(t_node *lst, t_node *new);
 void rotate(t_stack *stack);
 t_node	*ft_lstlast(t_node *lst);
+int input_checker(int argc, char *argv[]);
+int is_args_num(char *argv[]);
+void reverse_rotate(t_stack *stack);
 
 
 #endif

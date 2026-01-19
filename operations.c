@@ -49,3 +49,19 @@ void rotate(t_stack *stack)
     last = ft_lstlast(stack->top);
     last->next = first;
 }
+
+void reverse_rotate(t_stack *stack)
+{
+    //t_node *first;
+    t_node *last;
+    t_node *temp;
+
+    last = ft_lstlast(stack->top);
+    last->next = stack->top;
+    stack->top = last;
+    temp = stack->top;
+    while (temp->next != stack->top)
+        temp = temp->next;
+    temp->next = NULL;
+    
+}

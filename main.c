@@ -18,10 +18,6 @@ t_node	*make_stack(t_stack *stackA, int argc, char *argv[])
 	stackA->top = prev;
 	return (prev);
 }
-int input_checker(int argc, char *argv[])
-{
-    
-}
 
 int	main(int argc, char *argv[])
 {
@@ -35,6 +31,8 @@ int	main(int argc, char *argv[])
 	stackB = NULL;
 
 	i = 0;
+	//if (input_checker(argc, argv) == -1 || is_args_num(argv) == -1)
+	//	return 0;
 	stackA = malloc(sizeof(t_stack));
 	stackB = malloc(sizeof(t_stack));
 	temp = make_stack(stackA, argc, argv);
@@ -45,7 +43,7 @@ int	main(int argc, char *argv[])
 		temp = temp->next;
 	}
 	printf("stackA--------\n");
-	rotate(stackA);
+	reverse_rotate(stackA);
 	i = 0;
 	temp = (stackA)->top;
 	while (i < 3)
@@ -70,7 +68,7 @@ int	main(int argc, char *argv[])
     temp = stackA->top;
     while(temp != NULL)
     {
-        temp2 = temp2->next;
+        temp2 = temp->next;
         free(temp);
         temp = temp2;
     }
