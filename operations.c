@@ -21,18 +21,21 @@ void swap(t_stack *stack)
 void push(t_stack *stackA, t_stack *stackB)
 {
     t_node *temp;
-
+    
     if (stackB->top != NULL)
     {
         temp = stackA->top;
         stackA->top = stackA->top->next;
+        stackA->top->prev = NULL;
         temp->next = stackB->top;
+        temp->next->prev = temp;
         stackB->top = temp;
     }
     else
     {
         stackB->top = stackA->top;
         stackA->top = stackA->top->next;
+        stackA->top->prev = NULL;
         stackB->top->next = NULL;
     }
 }

@@ -14,7 +14,7 @@ int input_checker(int argc, char *argv[])
 		{
 			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
 			{
-				printf("Error\n");
+				printf("Error \n");
 				return (-1);
 			}
 			j++;
@@ -29,21 +29,22 @@ int is_args_num(char *argv[])
     int i;
     int j;
 
-    i = 0;
+    i = 1;
     j = 0;
     while (argv[i])
     {
         while(argv[i][j])
         {
-            if (ft_isdigit(argv[i][j]) != 0 || argv[i][j] == '-')
+            if (ft_isdigit(argv[i][j]) > 0 || argv[i][j] == '-')
                 j++;
             else
             {
-                printf("Error\n");
+                printf("Error %c\n", argv[i][j]);
 			    return (-1);
             }
         }
         i++;
+        j = 0;
     }
     return (0);
 }

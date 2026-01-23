@@ -9,12 +9,14 @@ typedef struct s_node
 {
 	int			content;
 	struct s_node	*next;
+    struct s_node	*prev;
     int             index;
 } t_node;
 
 typedef struct s_stack
 {
     struct s_node *top;
+    struct s_node *bottom;
     int size;
 } t_stack;
 
