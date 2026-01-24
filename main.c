@@ -45,7 +45,7 @@ int	main(int argc, char *argv[])
 		temp = temp->prev;
 	}
 	printf("stackA--------\n");
-	reverse_rotate(stackA);
+	sa(stackA);
 	i = 0;
 	temp = stackA->bottom;
 	while (i < 3)

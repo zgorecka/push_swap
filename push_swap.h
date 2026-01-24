@@ -24,7 +24,6 @@ t_node	*ft_lstnew(int content, int index);
 void	ft_lstadd_front(t_node **alst, t_node *new);
 int	ft_isdigit(int c);
 int	ft_atoi(char *str);
-void sa(t_stack *stackA);
 void	ft_lstdelone(t_node *lst);
 void push(t_stack *stackA, t_stack *stackB);
 void	ft_lstadd_back(t_node **lst, t_node *new);
@@ -33,6 +32,17 @@ t_node	*ft_lstlast(t_node *lst);
 int input_checker(int argc, char *argv[]);
 int is_args_num(char *argv[]);
 void reverse_rotate(t_stack *stack);
-
+void swap(t_stack *stack);
+void sa(t_stack *StackA);
+void sb(t_stack *StackB);
+void ss(t_stack *stackA, t_stack *stackB);
+void pa(t_stack *stackA, t_stack *stackB);
+void pb(t_stack *stackA, t_stack *stackB);
+void ra(t_stack *stackA);
+void rb(t_stack *stackB);
+void rr(t_stack *stackA, t_stack *stackB);
+void rra(t_stack *stackA);
+void rrb(t_stack *stackB);
+void rrr(t_stack *stackA, t_stack *stackB);
 
 #endif
