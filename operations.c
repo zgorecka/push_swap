@@ -55,7 +55,6 @@ void rotate(t_stack *stack)
 
 void reverse_rotate(t_stack *stack)
 {
-    //t_node *first;
     t_node *last;
     t_node *temp;
 
