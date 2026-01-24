@@ -7,13 +7,12 @@ t_node	*make_stack(t_stack *stackA, int argc, char *argv[])
 	t_node	*prev;
 
 	stackA->size = argc - 1;
-	prev = ft_lstnew(ft_atoi(argv[argc - 1]), argc-1);
-    stackA->bottom = prev;
+	stackA->bottom = ft_lstnew(ft_atoi(argv[argc - 1]), argc-1);
+    prev = stackA->bottom;
 	while (argc > 2)
 	{
 		temp = ft_lstnew(ft_atoi(argv[argc - 2]), argc-2);
-		ft_lstadd_front(prev, temp);
-        prev->prev = temp;
+		ft_lstadd_front(&prev, temp);
 		prev = temp;
 		argc--;
 	}
@@ -38,6 +37,7 @@ int	main(int argc, char *argv[])
 	stackA = malloc(sizeof(t_stack));
 	stackB = malloc(sizeof(t_stack));
 	temp = make_stack(stackA, argc, argv);
+	temp = stackA->bottom;
 	while (++i < argc)
 	{
 		printf("content: %d\n", temp->content);
@@ -45,17 +45,17 @@ int	main(int argc, char *argv[])
 		temp = temp->prev;
 	}
 	printf("stackA--------\n");
-	push(stackA, stackB);
+	reverse_rotate(stackA);
 	i = 0;
-	temp = (stackA)->bottom;
-	while (i < 2)
+	temp = stackA->bottom;
+	while (i < 3)
 	{
 		printf("content A: %d\n", temp->content);
 		printf("index A: %d\n", temp->index);
 		temp = temp->prev;
         i++;
 	}
-    
+    /*
 	i = 0;
 	temp = stackB->bottom;
     printf("stackB--------\n");
@@ -66,7 +66,7 @@ int	main(int argc, char *argv[])
 		temp = temp->prev;
         i++;
 	}
-        
+      */  
     temp = stackA->top;
     while(temp != NULL)
     {

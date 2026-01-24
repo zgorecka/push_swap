@@ -21,13 +21,13 @@ typedef struct s_stack
 } t_stack;
 
 t_node	*ft_lstnew(int content, int index);
-void	ft_lstadd_front(t_node *alst, t_node *new);
+void	ft_lstadd_front(t_node **alst, t_node *new);
 int	ft_isdigit(int c);
 int	ft_atoi(char *str);
 void sa(t_stack *stackA);
 void	ft_lstdelone(t_node *lst);
 void push(t_stack *stackA, t_stack *stackB);
-void	ft_lstadd_back(t_node *lst, t_node *new);
+void	ft_lstadd_back(t_node **lst, t_node *new);
 void rotate(t_stack *stack);
 t_node	*ft_lstlast(t_node *lst);
 int input_checker(int argc, char *argv[]);

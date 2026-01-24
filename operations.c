@@ -34,6 +34,7 @@ void push(t_stack *stackA, t_stack *stackB)
     else
     {
         stackB->top = stackA->top;
+        stackB->bottom = stackA->top;
         stackA->top = stackA->top->next;
         stackA->top->prev = NULL;
         stackB->top->next = NULL;
@@ -51,19 +52,22 @@ void rotate(t_stack *stack)
 
     last = ft_lstlast(stack->top);
     last->next = first;
+    first->prev = last;
+    stack->bottom = first;
 }
 
 void reverse_rotate(t_stack *stack)
 {
     t_node *last;
-    t_node *temp;
+    t_node *second_last;
 
     last = ft_lstlast(stack->top);
-    last->next = stack->top;
-    stack->top = last;
-    temp = stack->top;
-    while (temp->next != stack->top)
-        temp = temp->next;
-    temp->next = NULL;
+    second_last = last->prev;
     
+    second_last->next = NULL;
+    last->prev = NULL;
+    last->next = stack->top;
+    stack->top->prev = last;
+    stack->top = last;
+    stack->bottom = second_last;
 }
