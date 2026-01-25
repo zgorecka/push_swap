@@ -26,14 +26,14 @@ void push(t_stack *stackA, t_stack *stackB)
     {
         temp = stackA->top;
         stackA->top = stackA->top->next;
-        stackA->top->prev = NULL;
+        if (temp->next != NULL)
+            stackA->top->prev = NULL;        
         temp->next = stackB->top;
         temp->next->prev = temp;
         stackB->top = temp;
     }
     else
     {
-        stackB->size = 0;
         stackB->top = stackA->top;
         stackB->bottom = stackA->top;
         stackA->top = stackA->top->next;

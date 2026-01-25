@@ -52,5 +52,8 @@ void rrb(t_stack *stackB);
 void rrr(t_stack *stackA, t_stack *stackB);
 void sort3(t_stack *stackA);
 void sort(t_stack *stackA, t_stack *stackB);
+void print_stack(t_stack *stackA);
+char	**ft_split(char const *s, char c);
+
 
 #endif

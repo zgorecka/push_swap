@@ -53,18 +53,18 @@ void rr(t_stack *stackA, t_stack *stackB)
 void rra(t_stack *stackA)
 {
     reverse_rotate(stackA);
-    write(1, "rra\n", 3);
+    write(1, "rra\n", 4);
 }
 
 void rrb(t_stack *stackB)
 {
     reverse_rotate(stackB);
-    write(1, "rrb\n", 3);
+    write(1, "rrb\n", 4);
 }
 
 void rrr(t_stack *stackA, t_stack *stackB)
 {
     reverse_rotate(stackA);
     reverse_rotate(stackB);
-    write(1, "rrr\n", 3);
+    write(1, "rrr\n", 4);
 }

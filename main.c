@@ -28,7 +28,7 @@ int is_sorted(t_stack *stackA)
 	prev = stackA->top;
 	temp = stackA->top->next;
 
-	while(temp->next != NULL)
+	while(temp)
 	{
 		if (prev->content >= temp->content)
 			return (-1);
@@ -37,10 +37,25 @@ int is_sorted(t_stack *stackA)
 	}
 	return (1);
 }
+void print_stack(t_stack *stackA)
+{
+    t_node *temp;
+    temp = stackA->top;
+	while (temp)
+	{
+		printf("content A: %d\n", temp->content);
+		printf("index A: %d\n", temp->index);
+		//printf("content of target: %d\n", temp->target_node->content);
+        //printf("cost: %d\n", temp->push_cost);
+        printf("--------\n");
+		temp = temp->next;
+	}
+}
 
 int	main(int argc, char *argv[])
 {
 	int i;
+    char **argv_split;
 	t_node *temp;
     t_node *temp2;
 	t_stack *stackA;
@@ -48,7 +63,6 @@ int	main(int argc, char *argv[])
 
 	stackA = NULL;
 	stackB = NULL;
-
 	i = 0;
 	if (input_checker(argc, argv) == -1 || is_args_num(argv) == -1)
 		return 0;
@@ -58,6 +72,7 @@ int	main(int argc, char *argv[])
 	if (argc == 3 && is_sorted(stackA) == -1)
 	{
 		sa(stackA);
+        print_stack(stackA);
 		return ;
 	}
 	else if (argc == 4 && is_sorted(stackA) == -1)
@@ -76,15 +91,26 @@ int	main(int argc, char *argv[])
 	printf("stackA--------\n");
 	sort(stackA, stackB);
 
-	i = 0;
 	temp = stackA->top;
-	while (i < 3)
+	while (temp)
 	{
 		printf("content A: %d\n", temp->content);
 		printf("index A: %d\n", temp->index);
-		printf("content of target: %d\n", temp->target_node->content);
+		//printf("content of target: %d\n", temp->target_node->content);
+        //printf("cost: %d\n", temp->push_cost);
+        printf("--------\n");
 		temp = temp->next;
-        i++;
+	}
+    printf("*******stackB*********\n");
+    temp = stackB->top;
+	while (temp)
+	{
+		printf("content A: %d\n", temp->content);
+		printf("index A: %d\n", temp->index);
+		//printf("content of target: %d\n", temp->target_node->content);
+        //printf("cost: %d\n", temp->push_cost);
+        printf("--------\n");
+		temp = temp->next;
 	}
 	printf("is sorted: %d\n", is_sorted(stackA));
     /*
