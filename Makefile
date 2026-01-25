@@ -2,7 +2,7 @@ NAME = push_swap.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-CFILES = libft.c linked_list_utils.c operations.c input_checker.c operations2.c
+CFILES = libft.c linked_list_utils.c operations.c input_checker.c operations2.c sort.c
 
 OFILES = $(CFILES:.c=.o)
 

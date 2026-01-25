@@ -20,6 +20,24 @@ t_node	*make_stack(t_stack *stackA, int argc, char *argv[])
 	return (prev);
 }
 
+int is_sorted(t_stack *stackA)
+{
+	t_node *prev;
+	t_node *temp;
+
+	prev = stackA->top;
+	temp = stackA->top->next;
+
+	while(temp->next != NULL)
+	{
+		if (prev->content >= temp->content)
+			return (-1);
+		prev = temp;
+		temp = temp->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	int i;
@@ -37,24 +55,38 @@ int	main(int argc, char *argv[])
 	stackA = malloc(sizeof(t_stack));
 	stackB = malloc(sizeof(t_stack));
 	temp = make_stack(stackA, argc, argv);
-	temp = stackA->bottom;
+	if (argc == 3 && is_sorted(stackA) == -1)
+	{
+		sa(stackA);
+		return ;
+	}
+	else if (argc == 4 && is_sorted(stackA) == -1)
+	{
+		sort3(stackA);
+		return ;
+	}
+		
+	temp = stackA->top;
 	while (++i < argc)
 	{
 		printf("content: %d\n", temp->content);
 		printf("index: %d\n", temp->index);
-		temp = temp->prev;
+		temp = temp->next;
 	}
 	printf("stackA--------\n");
-	sa(stackA);
+	sort(stackA, stackB);
+
 	i = 0;
-	temp = stackA->bottom;
+	temp = stackA->top;
 	while (i < 3)
 	{
 		printf("content A: %d\n", temp->content);
 		printf("index A: %d\n", temp->index);
-		temp = temp->prev;
+		printf("content of target: %d\n", temp->target_node->content);
+		temp = temp->next;
         i++;
 	}
+	printf("is sorted: %d\n", is_sorted(stackA));
     /*
 	i = 0;
 	temp = stackB->bottom;

@@ -33,12 +33,15 @@ void push(t_stack *stackA, t_stack *stackB)
     }
     else
     {
+        stackB->size = 0;
         stackB->top = stackA->top;
         stackB->bottom = stackA->top;
         stackA->top = stackA->top->next;
         stackA->top->prev = NULL;
         stackB->top->next = NULL;
     }
+    stackA->size = stackA->size - 1;
+    stackB->size = stackB->size + 1;
 }
 
 void rotate(t_stack *stack)
@@ -48,6 +51,7 @@ void rotate(t_stack *stack)
 
     first = stack->top;
     stack->top = first->next;
+    stack->top->prev = NULL;
     first->next = NULL;
 
     last = ft_lstlast(stack->top);

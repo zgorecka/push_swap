@@ -22,13 +22,13 @@ void ss(t_stack *stackA, t_stack *stackB)
 
 void pa(t_stack *stackA, t_stack *stackB)
 {
-    push(stackA, stackB);
+    push(stackB, stackA);
     write(1, "pa\n", 3);
 }
 
 void pb(t_stack *stackA, t_stack *stackB)
 {
-    push(stackB, stackA);
+    push(stackA, stackB);
     write(1, "pb\n", 3);
 }
 void ra(t_stack *stackA)

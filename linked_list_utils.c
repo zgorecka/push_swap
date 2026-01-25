@@ -26,6 +26,7 @@ t_node	*ft_lstnew(int content, int index)
 	list->index = index;
 	list->next = NULL;
 	list->prev = NULL;
+	list->target_node = NULL;
 	return (list);
 }
 

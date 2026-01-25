@@ -4,6 +4,8 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
+#include <stdbool.h>
+
 
 typedef struct s_node
 {
@@ -11,6 +13,10 @@ typedef struct s_node
 	struct s_node	*next;
     struct s_node	*prev;
     int             index;
+    bool            cheapest;
+    bool            above_median;
+    int             push_cost;
+    struct s_node   *target_node;
 } t_node;
 
 typedef struct s_stack
@@ -44,5 +50,7 @@ void rr(t_stack *stackA, t_stack *stackB);
 void rra(t_stack *stackA);
 void rrb(t_stack *stackB);
 void rrr(t_stack *stackA, t_stack *stackB);
+void sort3(t_stack *stackA);
+void sort(t_stack *stackA, t_stack *stackB);
 
 #endif

@@ -12,7 +12,7 @@ int input_checker(int argc, char *argv[])
 		j = i + 1;
 		while (j < argc)
 		{
-			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]) || ft_atoi(argv[i]) > 2147483647 || ft_atoi(argv[i]) < -2147483647)
 			{
 				printf("Error \n");
 				return (-1);
