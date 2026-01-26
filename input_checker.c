@@ -6,7 +6,13 @@ int input_checker(int argc, char *argv[])
     int i;
 	int j;
 	
-	i = 1;
+    i = 1;
+    if (!argv || argc == 0)
+    {
+        printf("Error \n");
+        return (-1);
+    }
+        
 	while (i < argc)
 	{
 		j = i + 1;

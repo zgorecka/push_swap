@@ -237,7 +237,7 @@ void sort(t_stack *stackA, t_stack *stackB)
         set_index(stackB);
         push_cost(stackB, stackA);
         move_a_to_b(stackB, stackA);
-        printf("dupa test \n");
+        //printf("dupa test \n");
         //print_stack(stackA);
     }
     min_to_top(stackA);

@@ -77,7 +77,7 @@ static char	**put_words(char **res, char *s, char c)
 	return (res);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**res;
 	int		w;

@@ -20,6 +20,25 @@ t_node	*make_stack(t_stack *stackA, int argc, char *argv[])
 	return (prev);
 }
 
+t_node	*make_stack_split(t_stack *stackA, int argc, char **argv)
+{
+	t_node	*temp;
+	t_node	*prev;
+
+	stackA->size = argc - 1;
+	stackA->bottom = ft_lstnew(ft_atoi(argv[argc - 1]), argc-1);
+    prev = stackA->bottom;
+	while (argc > 1)
+	{
+		temp = ft_lstnew(ft_atoi(argv[argc - 2]), argc-2);
+		ft_lstadd_front(&prev, temp);
+		prev = temp;
+		argc--;
+	}
+	stackA->top = prev;
+	return (prev);
+}
+
 int is_sorted(t_stack *stackA)
 {
 	t_node *prev;
@@ -63,12 +82,26 @@ int	main(int argc, char *argv[])
 
 	stackA = NULL;
 	stackB = NULL;
-	i = 0;
-	if (input_checker(argc, argv) == -1 || is_args_num(argv) == -1)
-		return 0;
-	stackA = malloc(sizeof(t_stack));
+    stackA = malloc(sizeof(t_stack));
 	stackB = malloc(sizeof(t_stack));
-	temp = make_stack(stackA, argc, argv);
+
+    i = 0;
+    if (argc == 2)
+    {
+        argv_split = ft_split(argv[1], ' ');
+        while(argv_split[i])
+            i++;
+        if (input_checker(i, argv_split) == -1 || is_args_num(argv_split) == -1)
+		    return 0;
+        temp = make_stack_split(stackA, i, argv_split);
+        //print_stack(stackA);
+    }
+    else 
+    {
+        if (input_checker(argc, argv) == -1 || is_args_num(argv) == -1)
+		return 0;
+	    temp = make_stack(stackA, argc, argv);
+    }
 	if (argc == 3 && is_sorted(stackA) == -1)
 	{
 		sa(stackA);
@@ -80,7 +113,10 @@ int	main(int argc, char *argv[])
 		sort3(stackA);
 		return ;
 	}
-		
+    sort(stackA, stackB);
+    /*
+	i = 0;
+
 	temp = stackA->top;
 	while (++i < argc)
 	{
@@ -89,7 +125,7 @@ int	main(int argc, char *argv[])
 		temp = temp->next;
 	}
 	printf("stackA--------\n");
-	sort(stackA, stackB);
+	
 
 	temp = stackA->top;
 	while (temp)
