@@ -25,7 +25,7 @@ t_node	*make_stack_split(t_stack *stackA, int argc, char **argv)
 	t_node	*temp;
 	t_node	*prev;
 
-	stackA->size = argc - 1;
+	stackA->size = argc;
 	stackA->bottom = ft_lstnew(ft_atoi(argv[argc - 1]), argc-1);
     prev = stackA->bottom;
 	while (argc > 1)
@@ -114,6 +114,7 @@ int	main(int argc, char *argv[])
 		return ;
 	}
     sort(stackA, stackB);
+    print_stack(stackA);
     /*
 	i = 0;
 

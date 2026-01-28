@@ -16,13 +16,13 @@ void sort3(t_stack *stackA)
         ra(stackA);
     else if (a < b && b > c && a < c)
     {
-        reverse_rotate(stackA);
+        rra(stackA);
         sa(stackA);
     }
     else if (a > b && b < c && a < c)
         sa(stackA);
     else if(a < b && b > c && a > c)
-        reverse_rotate(stackA);
+        rra(stackA);
     
 }
 t_node *max_node(t_stack *stack)
@@ -182,11 +182,17 @@ void move_a_to_b(t_stack *stackA, t_stack *stackB)
 
     cheapest = find_cheapest(stackA);
     
-    if (cheapest->above_median)
-        while (stackA->top->content != cheapest->content)
+    if (cheapest->above_median && cheapest->target_node->above_median)
+        while (stackA->top->content != cheapest->content && stackB->top->content != cheapest->target_node->content)
+            rr(stackA, stackB);
+    else if (!cheapest->above_median && !cheapest->target_node->above_median)
+        while(stackA->top->content != cheapest->content && stackB->top->content != cheapest->target_node->content)
+            rrr(stackA, stackB);
+    else if (cheapest->target_node->above_median)
+        while(stackA->top->content != cheapest->target_node->content)
             ra(stackA);
     else if (!cheapest->above_median)
-        while(stackA->top->content != cheapest->content)
+        while(stackA->top->content != cheapest->target_node->content)
             rra(stackA);
     if (cheapest->target_node->above_median)
         while(stackB->top->content != cheapest->target_node->content)
@@ -196,6 +202,22 @@ void move_a_to_b(t_stack *stackA, t_stack *stackB)
             rrb(stackB);
     
     pb(stackA, stackB);
+}
+
+void move_b_to_a(t_stack *stackA, t_stack *stackB)
+{
+    t_node *cheapest;
+
+    cheapest = find_cheapest(stackB);
+    
+    if (cheapest->target_node->above_median)
+        while(stackA->top->content != cheapest->target_node->content)
+            ra(stackA);
+    else
+        while(stackA->top->content != cheapest->target_node->content)
+            rra(stackA);
+    
+    pa(stackA, stackB);
 }
 
 void min_to_top(t_stack *stackA)
@@ -214,6 +236,8 @@ void min_to_top(t_stack *stackA)
 
 void sort(t_stack *stackA, t_stack *stackB)
 {
+    //printf("stack size: %d", stackA->size);
+    
     if (stackA->size == 4)
         pb(stackA, stackB);
     else if (stackA->size > 4)
@@ -229,6 +253,10 @@ void sort(t_stack *stackA, t_stack *stackB)
         push_cost(stackA, stackB);
         move_a_to_b(stackA, stackB);
     }
+    //printf("stack sizeb: %d", stackB->size);
+    //print_stack(stackA);
+    //printf("\n ----------stackb\n");
+    //print_stack(stackB);
     sort3(stackA);
     while (stackB->size > 0)
     {
@@ -236,7 +264,7 @@ void sort(t_stack *stackA, t_stack *stackB)
         set_index(stackA);
         set_index(stackB);
         push_cost(stackB, stackA);
-        move_a_to_b(stackB, stackA);
+        move_b_to_a(stackA, stackB);
         //printf("dupa test \n");
         //print_stack(stackA);
     }
