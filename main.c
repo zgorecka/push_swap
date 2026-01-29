@@ -44,6 +44,9 @@ int is_sorted(t_stack *stackA)
 	t_node *prev;
 	t_node *temp;
 
+	if (!stackA->top)
+		return (-1);
+
 	prev = stackA->top;
 	temp = stackA->top->next;
 
@@ -84,16 +87,23 @@ int	main(int argc, char *argv[])
 	stackB = NULL;
     stackA = malloc(sizeof(t_stack));
 	stackB = malloc(sizeof(t_stack));
+	stackB->size = 0;
 
     i = 0;
+	if (argc < 2)
+	{
+		write(1, "Error\n", 6);
+		return (0);
+	}
     if (argc == 2)
     {
         argv_split = ft_split(argv[1], ' ');
         while(argv_split[i])
             i++;
         if (input_checker(i, argv_split) == -1 || is_args_num(argv_split) == -1)
-		    return 0;
+		    return (0);
         temp = make_stack_split(stackA, i, argv_split);
+		error(argv_split, i);
         //print_stack(stackA);
     }
     else 
@@ -102,16 +112,16 @@ int	main(int argc, char *argv[])
 		return 0;
 	    temp = make_stack(stackA, argc, argv);
     }
-	if (argc == 3 && is_sorted(stackA) == -1)
+	if (stackA->size == 2 && is_sorted(stackA) == -1)
 	{
 		sa(stackA);
         print_stack(stackA);
-		return ;
+		return (0);
 	}
-	else if (argc == 4 && is_sorted(stackA) == -1)
+	else if (stackA->size == 3 && is_sorted(stackA) == -1)
 	{
 		sort3(stackA);
-		return ;
+		return (0);
 	}
     sort(stackA, stackB);
     print_stack(stackA);

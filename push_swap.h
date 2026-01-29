@@ -54,5 +54,6 @@ void sort3(t_stack *stackA);
 void sort(t_stack *stackA, t_stack *stackB);
 void print_stack(t_stack *stackA);
 char	**ft_split(char *s, char c);
+char	**error(char **res, int j);
 
 #endif

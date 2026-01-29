@@ -20,7 +20,7 @@ static int	cout_w(char *s, char c)
 	return (w);
 }
 
-static char	**error(char **res, int j)
+char	**error(char **res, int j)
 {
 	while (j >= 0)
 	{

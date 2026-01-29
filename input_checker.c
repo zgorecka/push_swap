@@ -32,25 +32,29 @@ int input_checker(int argc, char *argv[])
 
 int is_args_num(char *argv[])
 {
-    int i;
+    int i = 1;
     int j;
 
-    i = 1;
-    j = 0;
     while (argv[i])
     {
-        while(argv[i][j])
+        j = 0;
+        if (argv[i][j] == '-')
+            j++;
+        if (!argv[i][j])
         {
-            if (ft_isdigit(argv[i][j]) > 0 || argv[i][j] == '-')
-                j++;
-            else
+            printf("Error\n");
+            return (-1);
+        }
+        while (argv[i][j])
+        {
+            if (!ft_isdigit(argv[i][j]))
             {
-                printf("Error %c\n", argv[i][j]);
-			    return (-1);
+                printf("Error\n");
+                return (-1);
             }
+            j++;
         }
         i++;
-        j = 0;
     }
     return (0);
 }
