@@ -29,7 +29,7 @@ typedef struct s_stack
 t_node	*ft_lstnew(int content, int index);
 void	ft_lstadd_front(t_node **alst, t_node *new);
 int	ft_isdigit(int c);
-int	ft_atoi(char *str);
+long	ft_atoi(char *str);
 void	ft_lstdelone(t_node *lst);
 void push(t_stack *stackA, t_stack *stackB);
 void	ft_lstadd_back(t_node **lst, t_node *new);
@@ -55,5 +55,5 @@ void sort(t_stack *stackA, t_stack *stackB);
 void print_stack(t_stack *stackA);
 char	**ft_split(char *s, char c);
 char	**error(char **res, int j);
-
+int	ft_atoi_safe(const char *str, int *out);
 #endif

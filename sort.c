@@ -84,7 +84,7 @@ void set_target_nodes(t_stack *stackA, t_stack *stackB)
         c_a = c_a->next;
     }
 }
-void set_target_nodes_b(t_stack *stackA, t_stack *stackB) //closest bigger
+void set_target_nodes_b(t_stack *stackA, t_stack *stackB)
 {
     t_node *c_a;
     t_node *c_b;
@@ -100,13 +100,9 @@ void set_target_nodes_b(t_stack *stackA, t_stack *stackB) //closest bigger
         while(c_a)
         {
             if (c_b->target_node == NULL && c_b->content < c_a->content)
-            {
                 c_b->target_node = c_a; 
-            }
             else if (c_b->content < c_a->content && c_b->target_node->content > c_a->content)
-            {
                 c_b->target_node = c_a; 
-            }
             c_a = c_a->next;
         }
         if (c_b->target_node == NULL)
@@ -135,25 +131,35 @@ void set_index(t_stack *stack)
         temp = temp->next;
     }
 }
-
 void push_cost(t_stack *stackA, t_stack *stackB)
 {
     t_node *temp;
-
-    if (!stackB || !stackB->top)
-        return;
+    int cost_a;
+    int cost_b;
 
     temp = stackA->top;
-    while(temp)
+    while (temp)
     {
-        if (temp->above_median && temp->target_node->above_median)
-            temp->push_cost = temp->index + temp->target_node->index;
-        else if (temp->above_median && !temp->target_node->above_median)
-            temp->push_cost = temp->index + (stackB->size - temp->target_node->index);
-        else if (!temp->above_median && temp->target_node->above_median)
-            temp->push_cost = stackA->size - temp->index + temp->target_node->index;
+        if (temp->above_median)
+            cost_a = temp->index;
         else
-            temp->push_cost = stackA->size - temp->index + stackB->size - temp->target_node->index;
+            cost_a = stackA->size - temp->index;
+        if (temp->target_node->above_median)
+            cost_b = temp->target_node->index;
+        else
+            cost_b = stackB->size - temp->target_node->index;
+        if (temp->above_median && temp->target_node->above_median)
+            if (cost_a > cost_b)
+                temp->push_cost = cost_a;
+            else
+                temp->push_cost = cost_b;
+        else if (!temp->above_median && !temp->target_node->above_median)
+            if (cost_a > cost_b)
+                temp->push_cost = cost_a;
+            else
+                temp->push_cost = cost_b;
+        else
+            temp->push_cost = cost_a + cost_b;
         temp = temp->next;
     }
 }
@@ -179,46 +185,63 @@ t_node *find_cheapest(t_stack *stackA)
 void move_a_to_b(t_stack *stackA, t_stack *stackB)
 {
     t_node *cheapest;
+    int     a_val;
+    int     b_val;
 
     cheapest = find_cheapest(stackA);
-    
+    a_val = cheapest->content;
+    b_val = cheapest->target_node->content;
     if (cheapest->above_median && cheapest->target_node->above_median)
-        while (stackA->top->content != cheapest->content && stackB->top->content != cheapest->target_node->content)
+        while (stackA->top->content != a_val && stackB->top->content != b_val)
             rr(stackA, stackB);
     else if (!cheapest->above_median && !cheapest->target_node->above_median)
-        while(stackA->top->content != cheapest->content && stackB->top->content != cheapest->target_node->content)
+        while (stackA->top->content != a_val && stackB->top->content != b_val)
             rrr(stackA, stackB);
-    else if (cheapest->target_node->above_median)
-        while(stackA->top->content != cheapest->target_node->content)
+    if (cheapest->above_median)
+        while (stackA->top->content != a_val)
             ra(stackA);
-    else if (!cheapest->above_median)
-        while(stackA->top->content != cheapest->target_node->content)
+    else
+        while (stackA->top->content != a_val)
             rra(stackA);
     if (cheapest->target_node->above_median)
-        while(stackB->top->content != cheapest->target_node->content)
+        while (stackB->top->content != b_val)
             rb(stackB);
-    else if (!cheapest->target_node->above_median)
-        while(stackB->top->content != cheapest->target_node->content)
+    else
+        while (stackB->top->content != b_val)
             rrb(stackB);
-    
     pb(stackA, stackB);
 }
 
 void move_b_to_a(t_stack *stackA, t_stack *stackB)
 {
     t_node *cheapest;
+    int     a_val;
+    int     b_val;
 
     cheapest = find_cheapest(stackB);
-    
+    a_val = cheapest->target_node->content;
+    b_val = cheapest->content;
+    if (cheapest->above_median && cheapest->target_node->above_median)
+        while (stackB->top->content != b_val && stackA->top->content != a_val)
+            rr(stackA, stackB);
+    else if (!cheapest->above_median && !cheapest->target_node->above_median)
+        while (stackB->top->content != b_val && stackA->top->content != a_val)
+            rrr(stackA, stackB);
+    if (cheapest->above_median)
+        while (stackB->top->content != b_val)
+            rb(stackB);
+    else
+        while (stackB->top->content != b_val)
+            rrb(stackB);
     if (cheapest->target_node->above_median)
-        while(stackA->top->content != cheapest->target_node->content)
+        while (stackA->top->content != a_val)
             ra(stackA);
     else
-        while(stackA->top->content != cheapest->target_node->content)
+        while (stackA->top->content != a_val)
             rra(stackA);
-    
     pa(stackA, stackB);
 }
+
 
 void min_to_top(t_stack *stackA)
 {
@@ -235,9 +258,7 @@ void min_to_top(t_stack *stackA)
 }
 
 void sort(t_stack *stackA, t_stack *stackB)
-{
-    //printf("stack size: %d", stackA->size);
-    
+{    
     if (stackA->size == 4)
         pb(stackA, stackB);
     else if (stackA->size > 4)
@@ -253,10 +274,6 @@ void sort(t_stack *stackA, t_stack *stackB)
         push_cost(stackA, stackB);
         move_a_to_b(stackA, stackB);
     }
-    //printf("stack sizeb: %d", stackB->size);
-    //print_stack(stackA);
-    //printf("\n ----------stackb\n");
-    //print_stack(stackB);
     sort3(stackA);
     while (stackB->size > 0)
     {
@@ -265,8 +282,6 @@ void sort(t_stack *stackA, t_stack *stackB)
         set_index(stackB);
         push_cost(stackB, stackA);
         move_b_to_a(stackA, stackB);
-        //printf("dupa test \n");
-        //print_stack(stackA);
     }
     min_to_top(stackA);
 }

@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 int	ft_isdigit(int c)
 {
@@ -7,10 +8,10 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_atoi(char *str)
+long ft_atoi(char *str)
 {
-	int num;
-	int isneg;
+	long num;
+	long isneg;
 	int i;
 
 	num = 0;
@@ -29,7 +30,12 @@ int	ft_atoi(char *str)
 	while (ft_isdigit(str[i]))
 	{
 		num = (num * 10) + (str[i] - '0');
+
 		i++;
 	}
-	return (num * isneg);
+	
+	num = num *isneg;
+	return (num);
 }
+
+
