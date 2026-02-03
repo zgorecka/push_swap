@@ -131,6 +131,8 @@ void set_index(t_stack *stack)
         temp = temp->next;
     }
 }
+
+
 void push_cost(t_stack *stackA, t_stack *stackB)
 {
     t_node *temp;

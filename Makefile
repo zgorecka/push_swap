@@ -2,7 +2,8 @@ NAME = push_swap.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-CFILES = libft.c linked_list_utils.c operations.c input_checker.c operations2.c sort.c ft_split.c
+CFILES = libft.c linked_list_utils.c swap.c input_checker.c push.c sort.c ft_split.c \
+rotate.c reverse_rotate.c
 
 OFILES = $(CFILES:.c=.o)
 

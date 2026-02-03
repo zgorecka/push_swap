@@ -30,7 +30,6 @@ long ft_atoi(char *str)
 	while (ft_isdigit(str[i]))
 	{
 		num = (num * 10) + (str[i] - '0');
-
 		i++;
 	}
 	
