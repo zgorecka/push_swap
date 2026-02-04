@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zgorecka <zgorecka@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/04 18:43:02 by zgorecka          #+#    #+#             */
+/*   Updated: 2026/02/04 18:43:03 by zgorecka         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include <stdio.h>
 
@@ -8,11 +20,11 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-long ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
-	long num;
-	long isneg;
-	int i;
+	long	num;
+	long	isneg;
+	int		i;
 
 	num = 0;
 	isneg = 1;
@@ -32,9 +44,6 @@ long ft_atoi(char *str)
 		num = (num * 10) + (str[i] - '0');
 		i++;
 	}
-	
-	num = num *isneg;
+	num = num * isneg;
 	return (num);
 }
-
-
