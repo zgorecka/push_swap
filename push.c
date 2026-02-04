@@ -1,4 +1,18 @@
 #include "push_swap.h"
+#include <stdio.h>
+
+
+void pa(t_stack *stackA, t_stack *stackB)
+{
+    push(stackB, stackA);
+    write(1, "pa\n", 3);
+}
+
+void pb(t_stack *stackA, t_stack *stackB)
+{
+    push(stackA, stackB);
+    write(1, "pb\n", 3);
+}
 
 void push(t_stack *stackA, t_stack *stackB)
 {
@@ -24,16 +38,4 @@ void push(t_stack *stackA, t_stack *stackB)
     }
     stackA->size = stackA->size - 1;
     stackB->size = stackB->size + 1;
-}
-
-void pa(t_stack *stackA, t_stack *stackB)
-{
-    push(stackB, stackA);
-    write(1, "pa\n", 3);
-}
-
-void pb(t_stack *stackA, t_stack *stackB)
-{
-    push(stackA, stackB);
-    write(1, "pb\n", 3);
 }

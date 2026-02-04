@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 void swap(t_stack *stack)
 {
@@ -18,6 +17,7 @@ void swap(t_stack *stack)
     second->content = tmp_content;
     second->index = tmp_index;
 }
+
 void sa(t_stack *stackA)
 {
     swap(stackA);
@@ -36,4 +36,3 @@ void ss(t_stack *stackA, t_stack *stackB)
     swap(stackB);
     write(1, "ss\n", 3);
 }
-

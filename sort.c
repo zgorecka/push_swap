@@ -287,4 +287,3 @@ void sort(t_stack *stackA, t_stack *stackB)
     }
     min_to_top(stackA);
 }
-

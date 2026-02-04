@@ -2,8 +2,8 @@ NAME = push_swap.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-CFILES = libft.c linked_list_utils.c swap.c input_checker.c push.c sort.c ft_split.c \
-rotate.c reverse_rotate.c
+CFILES = libft.c linked_list_utils.c input_checker.c push.c rotate.c swap.c reverse_rotate.c \
+sort.c ft_split.c make_stack.c utils.c
 
 OFILES = $(CFILES:.c=.o)
 
