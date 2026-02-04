@@ -6,11 +6,12 @@
 /*   By: zgorecka <zgorecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 20:34:23 by zgorecka          #+#    #+#             */
-/*   Updated: 2026/02/04 21:03:16 by zgorecka         ###   ########.fr       */
+/*   Updated: 2026/02/04 21:50:49 by zgorecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	count_split_args(char **argv_split)
 {

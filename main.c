@@ -6,12 +6,13 @@
 /*   By: zgorecka <zgorecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:42:54 by zgorecka          #+#    #+#             */
-/*   Updated: 2026/02/04 21:02:57 by zgorecka         ###   ########.fr       */
+/*   Updated: 2026/02/04 21:47:51 by zgorecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int	is_sorted(t_stack *stack_a)
 {
