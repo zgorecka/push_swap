@@ -6,7 +6,7 @@
 /*   By: zgorecka <zgorecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:43:06 by zgorecka          #+#    #+#             */
-/*   Updated: 2026/02/04 22:20:02 by zgorecka         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:34:51 by zgorecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	is_args_num(char **argv)
 				return (write(2, "Error\n", 6), -1);
 			j++;
 		}
-        i++;
+		i++;
 	}
 	return (0);
 }
