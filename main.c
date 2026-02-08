@@ -6,7 +6,7 @@
 /*   By: zgorecka <zgorecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:42:54 by zgorecka          #+#    #+#             */
-/*   Updated: 2026/02/04 21:47:51 by zgorecka         ###   ########.fr       */
+/*   Updated: 2026/02/08 20:37:28 by zgorecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ int	main(int argc, char *argv[])
 	if (init_stacks(&stack_a, &stack_b) == -1)
 		return (0);
 	if (parse_and_build_stack(stack_a, argc, argv) == -1)
-		return (0);
+    {
+        free(stack_a);
+        free(stack_b);
+        return (0);
+    }
 	if (is_sorted(stack_a) == 1)
 		return (0);
 	if (handle_small_sorts(stack_a) == 1)
